@@ -1,11 +1,12 @@
 <template>
   <div class="single-post-page">
     <section class="post">
-      <h1 class="post-title">Title of the post</h1>
+      <h1 class="post-title">{{ loadedPost.title }}</h1>
       <div class="post-details">
-        <div class="post-detail">Last updated on 11.11.11</div>
-        <div class="post-detail">Author: lorem ipsum</div>
+        <div class="post-detail">Last updated on {{ loadedPost.updatedDate }}</div>
+        <div class="post-detail">Author: {{ loadedPost.author }}</div>
       </div>
+      <p class="post-content">{{ loadedPost.content }}</p>
       <section class="post-feedback">
         Send me mail from
         <a href="mailto:asdf@xxx.xxx">asdf@xxx.xxx</a>
@@ -13,6 +14,29 @@
     </section>
   </div>
 </template>
+<script>
+export default {
+  asyncData(context, callback) {
+    setTimeout(() => {
+      callback(null, {
+        loadedPost: {
+          id: "1",
+          title: "first post id:" + context.route.params.id,
+          previewText:
+            "lorem ipsum https://static.pexels.com/photsdgos/270348/pexels-photo-270348.jpeg",
+          thumbnail:
+            "https://static.pexels.com/photos/270348/pexels-photo-270348.jpeg",
+          content:
+            "asdasd asdasdas asdasdas asdas dasd asd asd asd asdasdasdasdasda dasda sdads !!!",
+          updatedDate: new Date(),
+          author: "yee lmao"
+        }
+      });
+    }, 1500);
+  }
+};
+</script>
+
 <style scoped>
 .single-post-page {
   padding: 30px;
